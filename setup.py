@@ -23,12 +23,12 @@ def required(requirements_file):
 
 setup(
     name='voice-gender',
-    version='0.1',
+    version='0.2',
     packages=['voice_gender'],
     install_requires=required('requirements.txt'),
     package_data={'': package_files('voice_gender')},
     include_package_data=True,
-    url='',
+    url='https://github.com/JarbasAl/voice-gender',
     license='MIT',
     author='jarbasAI',
     author_email='jarbasai@mailfence.com',

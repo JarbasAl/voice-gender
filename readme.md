@@ -1,6 +1,6 @@
 # Voice Gender
 
-simple voice gender recognition
+simple voice gender recognition, GMMs trained on [Free ST American English Corpus](https://www.openslr.org/45/)
 
 ## install
 
@@ -9,11 +9,11 @@ simple voice gender recognition
 ## Usage
 
 ```python
-from voice_gender import GenderIdentifier
+from voice_gender import GenderClassifier
 
 my_file = "test.wav"
 
-gender = GenderIdentifier.predict(my_file)
+gender = GenderClassifier.predict(my_file)
 
 if gender == "female":
     print("female speaker")

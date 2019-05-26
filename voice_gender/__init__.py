@@ -7,7 +7,7 @@ from os.path import join, dirname
 warnings.filterwarnings("ignore")
 
 
-class GenderIdentifier:
+class GenderClassifier:
     females_model_path = join(dirname(__file__), "models", "females.gmm")
     males_model_path = join(dirname(__file__), "models", "males.gmm")
     # load models
@@ -18,18 +18,14 @@ class GenderIdentifier:
     def predict(audio):
         if isinstance(audio, str):  # file path
             audio = extract_features(audio)
-        # female hypothesis scoring
-        is_female_scores = np.array(GenderIdentifier.females_gmm.score(audio))
-        is_female_log_likelihood = is_female_scores.sum()
-        # male hypothesis scoring
-        is_male_scores = np.array(GenderIdentifier.males_gmm.score(audio))
-        is_male_log_likelihood = is_male_scores.sum()
 
-        if is_male_log_likelihood > is_female_log_likelihood:
+        is_female = np.array(GenderClassifier.females_gmm.score(audio)).sum()
+        is_male = np.array(GenderClassifier.males_gmm.score(audio)).sum()
+        if is_male > is_female:
             return "male"
         else:
             return "female"
 
 
 if __name__ == "__main__":
-    print(GenderIdentifier.predict("/females/f0001_us_f0001_00033.wav"))
+    print(GenderClassifier.predict("/females/f0001_us_f0001_00033.wav"))
