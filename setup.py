@@ -23,7 +23,7 @@ def required(requirements_file):
 
 setup(
     name='voice-gender',
-    version='0.2',
+    version='0.2.1',
     packages=['voice_gender'],
     install_requires=required('requirements.txt'),
     package_data={'': package_files('voice_gender')},

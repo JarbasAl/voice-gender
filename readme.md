@@ -19,4 +19,13 @@ if gender == "female":
     print("female speaker")
 elif gender == "male":
     print("male speaker")
+    
+score = GenderClassifier.score(my_file)
+if gender == "female":
+    assert score["female"] > score["male"]
+elif gender == "male":
+    assert score["male"] > score["female"]
+
+
+
 ```

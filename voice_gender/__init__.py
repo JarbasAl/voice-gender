@@ -15,6 +15,15 @@ class GenderClassifier:
     males_gmm = pickle.load(open(males_model_path, 'rb'))
 
     @staticmethod
+    def score(audio):
+        if isinstance(audio, str):  # file path
+            audio = extract_features(audio)
+
+        is_female = np.array(GenderClassifier.females_gmm.score(audio)).sum()
+        is_male = np.array(GenderClassifier.males_gmm.score(audio)).sum()
+        return {"male": is_male, "female": is_female}
+
+    @staticmethod
     def predict(audio):
         if isinstance(audio, str):  # file path
             audio = extract_features(audio)
@@ -28,4 +37,5 @@ class GenderClassifier:
 
 
 if __name__ == "__main__":
-    print(GenderClassifier.predict("/females/f0001_us_f0001_00033.wav"))
+    print(GenderClassifier.predict("examples/utterance_2019-04-24T20:54:52.460914.wav"))
+    print(GenderClassifier.score("examples/utterance_2019-04-24T20:54:52.460914.wav"))
